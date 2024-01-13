@@ -1,0 +1,329 @@
+1. Generate a random number within a specified range, such as 1 to 100.
+import java.util.Random;
+public class RandomNumberGenerator 
+{
+
+	    public static void main(String[] args) 
+	    {
+	        // Define the range
+	        int min = 1;
+	        int max = 100;
+
+	        // Create an instance of Random class
+	        Random random = new Random();
+
+	        // Generate a random number within the range
+	        int randomNumber = random.nextInt(max - min + 1) + min;
+
+	        // Print the random number
+	        System.out.println("Random number between " + min + " and " + max + ": " + randomNumber);
+	    }
+	}
+	---------------------------------------------------------------------------------------------------------------------
+2. Prompt the user to enter their guess for the generated number.
+// Java Program to guess a Random Number Generation 
+
+import java.util.Random; 
+import java.util.Scanner; 
+
+public class GFG { 
+	public static void main(String[] args) 
+	{ 
+
+		// stores actual and guess number 
+		int answer, guess; 
+
+		// maximum value is 100 
+		final int MAX = 100; 
+
+		// takes input using scanner 
+		Scanner in = new Scanner(System.in); 
+
+		// Random instance 
+		Random rand = new Random(); 
+
+		boolean correct = false; 
+
+		// correct answer 
+		answer = rand.nextInt(MAX) + 1; 
+
+		// loop until the guess is correct 
+		while (!correct) { 
+
+			System.out.println( 
+				"Guess a number between 1 and 100: "); 
+
+			// guess value 
+			guess = in.nextInt(); 
+
+			// if guess is greater than actual 
+			if (guess > answer) { 
+				System.out.println("Too high, try again"); 
+			} 
+
+			// if guess is less than actual 
+			else if (guess < answer) { 
+				System.out.println("Too low, try again"); 
+			} 
+
+			// guess is equal to actual value 
+			else { 
+
+				System.out.println( 
+					"Yes, you guessed the number."); 
+
+				correct = true; 
+			} 
+		} 
+		System.exit(0); 
+	} 
+}
+----------------------------------------------------------------------------------------------------------------------
+3. Compare the user's guess with the generated number and provide feedback on whether the guess
+is correct, too high, or too low.
+You can incorporate additional details as follows:
+
+import java.util.Scanner;
+
+public class NumberGuessingGame2 {
+    public static void main(String[] args) {
+        // Generate a random number between 1 and 100
+        int randomNumber = (int) (Math.random() * 100) + 1;
+
+        // Initialize variables
+        int userGuess;
+        boolean correctGuess = false;
+        Scanner scanner = new Scanner(System.in);
+
+        // Main game loop
+        while (!correctGuess) {
+            // Ask the user to enter a guess
+            System.out.print("Enter your guess (between 1 and 100): ");
+            userGuess = scanner.nextInt();
+
+            // Compare the user's guess with the generated number
+            if (userGuess == randomNumber) {
+                System.out.println("Congratulations! Your guess is correct.");
+                correctGuess = true;
+            } else if (userGuess < randomNumber) {
+                System.out.println("Too low. Try again!");
+            } else {
+                System.out.println("Too high. Try again!");
+            }
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+----------------------------------------------------------------------------------------------------------
+4. Repeat steps 2 and 3 until the user guesses the correct number.
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessTheNumber {
+    public static void main(String[] args) {
+        // Generate a random number between 1 and 100
+        Random random = new Random();
+        int correctNumber = random.nextInt(100) + 1;
+
+        // Create a Scanner object for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Start the game
+        System.out.println("Welcome to Guess the Number Game!");
+        System.out.println("Try to guess the number between 1 and 100.");
+
+        // Initialize variables
+        int userGuess;
+        int attempts = 0;
+
+        do {
+            // Get user input
+            System.out.print("Enter your guess: ");
+            userGuess = scanner.nextInt();
+
+            // Increment the number of attempts
+            attempts++;
+
+            // Check if the guess is correct
+            if (userGuess == correctNumber) {
+                System.out.println("Congratulations! You guessed the correct number in " + attempts + " attempts.");
+            } else {
+                // Provide feedback to the user
+                if (userGuess < correctNumber) {
+                    System.out.println("Try a higher number.");
+                } else {
+                    System.out.println("Try a lower number.");
+                }
+            }
+        } while (userGuess != correctNumber);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------
+5. Limit the number of attempts the user has to guess the number
+      
+	  import java.util.Scanner;
+       public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        Random random = new Random();
+
+	        // Generate a random number between 1 and 10
+	        int randomNumber = random.nextInt(10) + 1;
+
+	        int maxAttempts = 3;
+	        int attempts = 0;
+	        boolean hasGuessedCorrectly = false;
+
+	        System.out.println("Welcome to the Number Guessing Game!");
+	        System.out.println("Try to guess the number between 1 and 10.");
+
+	        while (attempts < maxAttempts) {
+	            System.out.print("Enter your guess: ");
+	            int userGuess = scanner.nextInt();
+	            attempts++;
+
+	            if (userGuess == randomNumber) {
+	                hasGuessedCorrectly = true;
+	                break; // Exit the loop if the guess is correct
+	            } else {
+	                System.out.println("Incorrect guess. Try again.");
+	            }
+	        }
+
+	        // Check if the user guessed correctly or ran out of attempts
+	        if (hasGuessedCorrectly) {
+	            System.out.println("Congratulations! You guessed the correct number.");
+	        } else {
+	            System.out.println("Sorry, you ran out of attempts. The correct number was: " + randomNumber);
+	        }
+
+	        scanner.close();
+	    }
+	}
+---------------------------------------------------------------------------------------------------------
+6. Add the option for multiple rounds, allowing the user to play again.
+
+import java.util.Random;
+import java.util.Scanner;
+public class MultipleRound
+{
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        Random random = new Random();
+
+	        boolean playAgain = true;
+
+	        while (playAgain) {
+	            playGame(random, scanner);
+
+	            System.out.print("Do you want to play again? (yes/no): ");
+	            String playAgainInput = scanner.next().toLowerCase();
+
+	            playAgain = playAgainInput.equals("yes");
+	        }
+
+	        System.out.println("Thanks for playing! Goodbye!");
+	        scanner.close();
+	    }
+
+	    private static void playGame(Random random, Scanner scanner) {
+	        // Generate a random number between 1 and 10
+	        int randomNumber = random.nextInt(10) + 1;
+
+	        int maxAttempts = 3;
+	        int attempts = 0;
+	        boolean hasGuessedCorrectly = false;
+
+	        System.out.println("Welcome to the Number Guessing Game!");
+	        System.out.println("Try to guess the number between 1 and 10.");
+
+	        while (attempts < maxAttempts) {
+	            System.out.print("Enter your guess: ");
+	            int userGuess = scanner.nextInt();
+	            attempts++;
+
+	            if (userGuess == randomNumber) {
+	                hasGuessedCorrectly = true;
+	                break; // Exit the loop if the guess is correct
+	            } else {
+	                System.out.println("Incorrect guess. Try again.");
+	            }
+	        }
+
+	        // Check if the user guessed correctly or ran out of attempts
+	        if (hasGuessedCorrectly) {
+	            System.out.println("Congratulations! You guessed the correct number.");
+	        } else {
+	            System.out.println("Sorry, you ran out of attempts. The correct number was: " + randomNumber);
+	        }
+	    }
+	}
+---------------------------------------------------------------------------------------------------------------
+7. Display the user's score, which can be based on the number of attempts taken or rounds won.	
+
+package internshiptask1;
+
+
+
+	import java.util.Scanner;
+
+	public class UserScoreCalculator {
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        // Assume a goal is to be achieved, and the user has to guess it.
+	        int targetNumber = 42;
+
+	        // Number of attempts allowed
+	        int maxAttempts = 5;
+
+	        // Initialize variables
+	        int attempts = 0;
+	        int userGuess;
+	        boolean isCorrect = false;
+
+	        // Game loop
+	        while (attempts < maxAttempts && !isCorrect) {
+	            System.out.print("Enter your guess: ");
+	            userGuess = scanner.nextInt();
+	            attempts++;
+
+	            if (userGuess == targetNumber) {
+	                System.out.println("Congratulations! You guessed it right.");
+	                isCorrect = true;
+	            } else {
+	                System.out.println("Incorrect guess. Try again.");
+	            }
+	        }
+
+	        // Calculate and display the score
+	        int score = calculateScore(attempts, maxAttempts);
+	        System.out.println("Your score is: " + score);
+
+	        scanner.close();
+	    }
+
+	    // Function to calculate the score based on the number of attempts
+	    private static int calculateScore(int attempts, int maxAttempts) {
+	        // You can customize the scoring logic based on your requirements.
+	        // This is a simple example where the score is calculated as a percentage of correct guesses.
+	        double percentageCorrect = ((double) attempts / maxAttempts) * 100;
+	        int score = (int) percentageCorrect; // Convert to int for simplicity
+
+	        return score;
+	    }
+	}
+----------------------------------------------------------------------------------------------------------
+
+
+	
+	
+
+
+
+
